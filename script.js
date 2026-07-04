@@ -236,3 +236,99 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+ 
+
+/* =====================================================
+   RIYAS STOCK POINT — contact.js
+   Contact page only. Existing script.js is untouched
+   and still runs first (navbar, hamburger, fade-in, etc.)
+   ===================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ----- Contact form: client-side validation + WhatsApp fallback ----- */
+  const form   = document.getElementById('contactForm');
+  const status = document.getElementById('cf-status');
+  if (!form) return;
+
+  // Set this to your WhatsApp number in international format, no '+', e.g. '919876543210'
+  const WHATSAPP_NUMBER = '';
+
+  const setStatus = (msg, type) => {
+    status.textContent = msg;
+    status.classList.remove('success', 'error');
+    if (type) status.classList.add(type);
+  };
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name    = form.name.value.trim();
+    const phone   = form.phone.value.trim();
+    const email   = form.email.value.trim();
+    const subject = form.subject.value.trim();
+    const message = form.message.value.trim();
+
+    if (!name || !phone || !subject || !message) {
+      setStatus('Please fill in your name, phone, subject and message.', 'error');
+      return;
+    }
+    if (!/^[0-9+\-\s]{7,15}$/.test(phone)) {
+      setStatus('Please enter a valid phone number.', 'error');
+      return;
+    }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus('Please enter a valid email address.', 'error');
+      return;
+    }
+
+    // Compose WhatsApp message and open chat
+    const text =
+      `Hello Riyas Stock Point,%0A` +
+      `*Name:* ${encodeURIComponent(name)}%0A` +
+      `*Phone:* ${encodeURIComponent(phone)}%0A` +
+      (email ? `*Email:* ${encodeURIComponent(email)}%0A` : '') +
+      `*Subject:* ${encodeURIComponent(subject)}%0A` +
+      `*Message:* ${encodeURIComponent(message)}`;
+
+    const waUrl = WHATSAPP_NUMBER
+      ? `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`
+      : `https://wa.me/?text=${text}`;
+
+    setStatus('Opening WhatsApp… please send the message to complete your enquiry.', 'success');
+    window.open(waUrl, '_blank', 'noopener');
+    form.reset();
+  });
+
+
+  /* ----- FAQ: keep only one open at a time (optional polish) ----- */
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach((item) => {
+    item.addEventListener('toggle', () => {
+      if (item.open) {
+        faqItems.forEach((other) => {
+          if (other !== item) other.open = false;
+        });
+      }
+    });
+  });
+
+
+  /* ----- Fade-in on scroll (safe if script.js already handles it) ----- */
+  if (!window.__riyasFadeInBound) {
+    const faders = document.querySelectorAll('.fade-in');
+    if ('IntersectionObserver' in window && faders.length) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      faders.forEach((el) => io.observe(el));
+    }
+    window.__riyasFadeInBound = true;
+  }
+});
+
