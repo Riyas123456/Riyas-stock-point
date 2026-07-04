@@ -1157,3 +1157,395 @@ ul { list-style: none; }
   .map-wrap     { aspect-ratio: 4 / 5; }
 }
 
+/* ===========================================================
+   RESPONSIVE DESIGN
+   =========================================================== */
+
+/* ---------- Large Tablet ---------- */
+
+@media (max-width:1200px){
+
+.container{
+    padding:0 20px;
+}
+
+.hero{
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.hero-logo-img{
+    width:420px;
+    height:420px;
+}
+
+}
+
+
+/* ---------- Tablet ---------- */
+
+@media (max-width:992px){
+
+.hero{
+    flex-direction:column-reverse;
+    text-align:center;
+    justify-content:center;
+    padding-top:120px;
+    gap:50px;
+}
+
+.hero-content{
+    max-width:100%;
+}
+
+.hero-cta{
+    justify-content:center;
+}
+
+.hero-stats{
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.hero-logo-img{
+    width:360px;
+    height:360px;
+}
+
+.about-grid,
+.culture-inner{
+    grid-template-columns:1fr;
+    gap:50px;
+}
+
+.about-cards{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.why-grid{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.menu-grid{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.contact-grid{
+    grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media (max-width:768px){
+
+:root{
+    --nav-h:70px;
+}
+
+.section{
+    padding:70px 0;
+}
+
+.section-title{
+    font-size:2rem;
+}
+
+.section-sub{
+    font-size:1rem;
+}
+
+.nav-container{
+    padding:0 16px;
+}
+
+.logo-img{
+    width:40px;
+    height:40px;
+}
+
+.logo-text{
+    font-size:1rem;
+}
+
+.hamburger{
+    display:flex;
+}
+
+.nav-links{
+
+    position:fixed;
+
+    top:70px;
+
+    right:-100%;
+
+    width:270px;
+
+    height:calc(100vh - 70px);
+
+    background:#fff;
+
+    flex-direction:column;
+
+    justify-content:flex-start;
+
+    align-items:flex-start;
+
+    padding:35px;
+
+    gap:24px;
+
+    transition:.35s;
+
+    box-shadow:-5px 0 30px rgba(0,0,0,.1);
+
+    z-index:999;
+
+}
+
+.nav-links.open{
+
+    right:0;
+
+}
+
+.hero{
+
+    flex-direction:column-reverse;
+
+    text-align:center;
+
+    min-height:auto;
+
+    gap:40px;
+
+    padding-top:110px;
+
+}
+
+.hero-image-wrap{
+
+    max-width:100%;
+
+}
+
+.hero-ring{
+
+    width:280px;
+
+    height:280px;
+
+}
+
+.hero-logo-img{
+
+    width:280px;
+
+    height:280px;
+
+}
+
+.hero-title{
+
+    font-size:2.8rem;
+
+}
+
+.hero-sub{
+
+    font-size:1rem;
+
+}
+
+.hero-cta{
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.hero-cta .btn{
+
+    width:100%;
+
+    max-width:320px;
+
+    justify-content:center;
+
+}
+
+.hero-stats{
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.stat-divider{
+
+    display:none;
+
+}
+
+.about-grid,
+
+.culture-inner{
+
+    grid-template-columns:1fr;
+
+}
+
+.about-cards{
+
+    grid-template-columns:1fr;
+
+}
+
+.why-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.menu-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.contact-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.culture-badge-wrap{
+
+    width:260px;
+
+    height:260px;
+
+}
+
+.marquee-track{
+
+    animation-duration:18s;
+
+}
+
+}
+
+
+/* ---------- Small Phones ---------- */
+
+@media (max-width:480px){
+
+.container{
+
+    padding:0 16px;
+
+}
+
+.hero{
+
+    padding-top:100px;
+
+}
+
+.hero-logo-img{
+
+    width:250px;
+
+    height:250px;
+
+}
+
+.hero-ring{
+
+    width:250px;
+
+    height:250px;
+
+}
+
+.hero-title{
+
+    font-size:2.2rem;
+
+}
+
+.section-title{
+
+    font-size:1.8rem;
+
+}
+
+.section-sub{
+
+    font-size:.95rem;
+
+}
+
+.btn{
+
+    width:100%;
+
+    justify-content:center;
+
+}
+
+.logo-text{
+
+    font-size:.9rem;
+
+}
+
+.logo-img{
+
+    width:36px;
+
+    height:36px;
+
+}
+
+}
+
+
+/* ---------- Very Small Phones ---------- */
+
+@media (max-width:360px){
+
+.hero-title{
+
+    font-size:1.9rem;
+
+}
+
+.hero-logo-img{
+
+    width:220px;
+
+    height:220px;
+
+}
+
+.hero-ring{
+
+    width:220px;
+
+    height:220px;
+
+}
+
+.logo-text{
+
+    display:none;
+
+}
+
+}
