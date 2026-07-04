@@ -332,3 +332,57 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+/* =====================================================
+   RIYAS STOCK POINT — about.js
+   About-page-only enhancements. Existing script.js
+   handles navbar, hamburger, active links and fade-ins.
+   ===================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ---------- Auto-update footer year ---------- */
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ---------- FAQ accordion: only one open at a time ---------- */
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach((item) => {
+    item.addEventListener('toggle', () => {
+      if (item.open) {
+        faqItems.forEach((other) => {
+          if (other !== item) other.open = false;
+        });
+      }
+    });
+  });
+
+  /* ---------- Smooth scroll for in-page anchors ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const targetId = link.getAttribute('href');
+      if (!targetId || targetId === '#') return;
+      const target = document.querySelector(targetId);
+      if (!target) return;
+      e.preventDefault();
+      const navH = document.getElementById('navbar')?.offsetHeight || 72;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - navH + 1;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+
+  /* ---------- Fade-in on scroll (safety net if script.js already handles it) ---------- */
+  const fadeEls = document.querySelectorAll('.fade-in');
+  if ('IntersectionObserver' in window && fadeEls.length) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    fadeEls.forEach((el) => io.observe(el));
+  } else {
+    fadeEls.forEach((el) => el.classList.add('visible'));
+  }
+});
