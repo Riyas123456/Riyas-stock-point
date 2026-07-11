@@ -289,7 +289,7 @@ ul { list-style: none; }
 .title-line.accent {
   background: var(--gradient);
   -webkit-background-clip: text;
-  -webkit-text-fill-color:#ffffff ;
+  -webkit-text-fill-color:#black ;
   background-clip: text;
   animation-delay: 0.2s;
 }
